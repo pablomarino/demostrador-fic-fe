@@ -10,7 +10,5 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(), 
     provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes, withComponentInputBinding())
-    //provideZoneChangeDetection({ eventCoalescing: true }), 
-    //provideRouter(routes)
   ]
 };
