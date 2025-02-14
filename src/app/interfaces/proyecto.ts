@@ -11,3 +11,5 @@ export interface Proyecto {
     video:             string;
     web:               string;
 }
+
+// necesito Imagen thumbnail, alt text, titulo, resumen, enlaces, nombre usuario, participaciones
