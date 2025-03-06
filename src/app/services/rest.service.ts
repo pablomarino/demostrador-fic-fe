@@ -7,7 +7,8 @@ import { Proyecto } from '../interfaces/proyecto';
   providedIn: 'root',
 })
 export class RestService {
-  private baseUrl: string = 'http://localhost:3000'; // TODO: Obtener a traves de un fichero de configuración la URL base del servicio NestJS
+  //private baseUrl: string = 'http://localhost:3000'; // TODO: Obtener a traves de un fichero de configuración la URL base del servicio NestJS
+  private baseUrl: string = 'http://localhost:3200'; 
 
   constructor(private http: HttpClient) {}
 
