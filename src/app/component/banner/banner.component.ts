@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
 import { Proyecto } from '../../interfaces/proyecto';
 import { RestService } from '../../services/rest.service';
 import { Router } from '@angular/router';
@@ -14,29 +14,38 @@ import { Router } from '@angular/router';
 export class BannerComponent {
   proyectos: Proyecto[] = [];
   selected_project: number = 0;
+  
 
   constructor(private restService: RestService, 
     private router: Router/*, private cd: ChangeDetectorRef*/) {}
+    private intervalId: any;
+    private update_interval = 15000;
+    private visible_projects:number = 7;
 
   ngOnInit(): void {
     this.restService.getProyectos().subscribe({
       next: (data) => {
-        this.proyectos=this.shuffleArray(data.slice(0,7))
+        this.proyectos=this.shuffleArray(data.slice(0,this.visible_projects))
         //this.proyectos = data;
       },
       error: (error) => {
         console.error('Error al obtener proyectos:', error);
       }
     });
+
+    this.startTimer();
   }
 
   update_selected_project(arg:number){
+    clearInterval(this.intervalId);
     this.selected_project=arg;
     //this.cd.detectChanges();
-    console.log(this.selected_project)
+    this.startTimer()
   }
 
   navigate_to_project() {
+    
+    console.log("saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     console.log(this.proyectos)
     console.log(this.selected_project)
     console.log(this.proyectos[this.selected_project])
@@ -52,5 +61,16 @@ export class BannerComponent {
       [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];  // Intercambiar elementos
     }
     return shuffledArray;
+  }
+
+  startTimer() {
+    this.intervalId = setInterval(() => {
+      this.selected_project = (this.selected_project + 1) % this.visible_projects;
+      this.update_selected_project(this.selected_project);
+    }, this.update_interval); // Cambia cada 3 segundos (ajusta el tiempo según necesites)
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.intervalId); // Limpia el intervalo cuando el componente se destruye
   }
 }

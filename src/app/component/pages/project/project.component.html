@@ -1,3 +1,90 @@
+<section class="py-12 px-8 lg:py-32 lg:pt-12">
+  <div class="container max-w-screen-lg mx-auto">
+<!-- <div class="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-none py-8 lg:flex-row">-->
+  <div class="p-6 w-full lg:gap-10 h-full lg:!flex justify-between bg-slate-100">
+
+    <!-- Info proyecto + Botonera-->
+    <div class="h-full flex flex-col">
+        <!-- Información del proyecto -->
+        <div id="info" class="flex-grow overflow-auto">
+            <div class="mb-10 lg:mb-0 overflow-clip">
+                <!-- Titulo proyecto-->
+                <p class="block antialiased tracking-normal font-sans text-3xl leading-snug text-blue-gray-900 mb-3 font-bold  leading-none lg:max-w-xl w-full ">
+                    {{proyecto?.titulo_es}}
+                </p>
+
+                <!-- Eventos en los que ha participado -->
+                @if(proyecto?.participaciones!.length>0){
+                <div class="flex items-center w-full">
+                    <h6 class="text-base font-extralight text-blue-gray-900 leading-6 line-clamp-2 overflow-hidden text-ellipsis ![display:-webkit-box] ![webkit-box-orient:vertical]">
+                      {{proyecto?.participaciones![0].resultado_es+proyecto.eventos[0].titulo_es}}
+                    </h6>
+                </div>
+                }
+
+                    
+
+
+                <div class="flex flex-col w-full mt-4">
+                    <!-- Contenedor de imagen y texto en dos columnas alineadas a la izquierda -->
+                    <div class="flex items-center gap-4">
+                        <!-- Columna 1: Imagen -->
+                        <img src="{{proyecto?.imagen_autor}}" alt=""
+                            class="w-10 h-10 rounded-full object-cover cursor-pointer mr-2">
+                        
+                        <!-- Columna 2: Nombre y rol -->
+                        <div class="flex flex-col">
+                            <h6 class="text-base font-normal text-blue-gray-900">
+                                {{ proyecto?.nombre }}
+                                {{ proyecto?.apellido1 }}
+                                {{ proyecto?.apellido2 }}
+                            </h6>
+                            <h6 class="text-s line-clamp-2 overflow-hidden text-ellipsis ![display:-webkit-box] ![webkit-box-orient:vertical]m text-gray-500">Autor</h6>
+                        </div>
+                    </div>
+ 
+       
+                </div>
+                <div class="flex items-center w-full max-h-fit pt-8">
+                  <h6 class="text-base font-extralight text-blue-gray-900 leading-6">
+                      {{proyecto.resumen_es}}
+                  </h6>
+              </div>          
+                
+            </div>
+        </div>
+   
+    </div>
+    
+
+        <!-- Reproductor de Video -->
+        <div class="mb-8 w-full flex justify-center">
+          
+          <video controls>
+            <source src="proyectos/videos/demo.webm" type="video/webm">
+          </video>
+<!--
+          <video class="w-full max-w-3xl rounded-lg shadow-lg" controls>
+            
+            <source src="{{ proyecto?.video}}" type="video/webm">
+            Tu navegador no soporta la reproducción de video.
+          </video>
+        -->
+        </div>
+    <!-- Imagen proyecto -->
+    <div class="h-[21rem] rounded-lg w-full sm:w-[32rem] shrink-0">
+        <img alt="testimonial image" loading="lazy" width="768" height="768" decoding="async" data-nimg="1"
+            class="h-full rounded-lg w-full object-cover" style="color: transparent;"
+            src="{{proyecto.imagenes[0].ruta}}">
+    </div>
+</div>
+
+
+  </div>
+</section>
+
+
+<!--
 <section class="px-8 py-10">
     <div
       class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 border border-gray-300"
@@ -207,3 +294,5 @@
       </div>
     </div>
   </section>
+
+  -->

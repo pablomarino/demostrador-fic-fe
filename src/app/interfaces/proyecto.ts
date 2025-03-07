@@ -39,5 +39,3 @@ export interface Proyecto {
     imagenes:          Imagen[];
     participaciones:   Participacion[];
 }
-
-// necesito Imagen thumbnail, alt text, titulo, resumen, enlaces, nombre usuario, participaciones

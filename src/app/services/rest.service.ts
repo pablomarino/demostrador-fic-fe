@@ -16,4 +16,8 @@ export class RestService {
   getProyectos(): Observable<Proyecto[]> {
     return this.http.get<Proyecto[]>(`${this.baseUrl}/proyectos`);
   }
+
+  getProyecto(id:string): Observable<Proyecto> {
+    return this.http.get<Proyecto>(`${this.baseUrl}/proyectos/${id}`);
+  }
 }
