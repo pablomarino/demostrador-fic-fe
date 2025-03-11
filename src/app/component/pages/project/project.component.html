@@ -1,298 +1,82 @@
 <section class="py-12 px-8 lg:py-32 lg:pt-12">
   <div class="container max-w-screen-lg mx-auto">
-<!-- <div class="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-none py-8 lg:flex-row">-->
-  <div class="p-6 w-full lg:gap-10 h-full lg:!flex justify-between bg-slate-100">
+    <div class="p-12 w-full h-full bg-[rgba(50,110,118,.1)]"><!--</div> bg-slate-100">    -->
 
-    <!-- Info proyecto + Botonera-->
-    <div class="h-full flex flex-col">
-        <!-- Información del proyecto -->
-        <div id="info" class="flex-grow overflow-auto">
-            <div class="mb-10 lg:mb-0 overflow-clip">
-                <!-- Titulo proyecto-->
-                <p class="block antialiased tracking-normal font-sans text-3xl leading-snug text-blue-gray-900 mb-3 font-bold  leading-none lg:max-w-xl w-full ">
-                    {{proyecto?.titulo_es}}
-                </p>
-
-                <!-- Eventos en los que ha participado -->
-                @if(proyecto?.participaciones!.length>0){
-                <div class="flex items-center w-full">
-                    <h6 class="text-base font-extralight text-blue-gray-900 leading-6 line-clamp-2 overflow-hidden text-ellipsis ![display:-webkit-box] ![webkit-box-orient:vertical]">
-                      {{proyecto?.participaciones![0].resultado_es+proyecto.eventos[0].titulo_es}}
-                    </h6>
-                </div>
-                }
-
-                    
-
-
-                <div class="flex flex-col w-full mt-4">
-                    <!-- Contenedor de imagen y texto en dos columnas alineadas a la izquierda -->
-                    <div class="flex items-center gap-4">
-                        <!-- Columna 1: Imagen -->
-                        <img src="{{proyecto?.imagen_autor}}" alt=""
-                            class="w-10 h-10 rounded-full object-cover cursor-pointer mr-2">
-                        
-                        <!-- Columna 2: Nombre y rol -->
-                        <div class="flex flex-col">
-                            <h6 class="text-base font-normal text-blue-gray-900">
-                                {{ proyecto?.nombre }}
-                                {{ proyecto?.apellido1 }}
-                                {{ proyecto?.apellido2 }}
-                            </h6>
-                            <h6 class="text-s line-clamp-2 overflow-hidden text-ellipsis ![display:-webkit-box] ![webkit-box-orient:vertical]m text-gray-500">Autor</h6>
-                        </div>
-                    </div>
- 
-       
-                </div>
-                <div class="flex items-center w-full max-h-fit pt-8">
-                  <h6 class="text-base font-extralight text-blue-gray-900 leading-6">
-                      {{proyecto.resumen_es}}
-                  </h6>
-              </div>          
-                
-            </div>
-        </div>
-   
-    </div>
+    <p class="text-[#132b2e] block antialiased tracking-normal font-sans text-3xl leading-snug text-blue-gray-900 mb-3 font-bold leading-none  w-full">
+      {{proyecto?.titulo_es}}
+    </p>
     
-
-        <!-- Reproductor de Video -->
-        <div class="mb-8 w-full flex justify-center">
-          
-          <video controls>
-            <source src="proyectos/videos/demo.webm" type="video/webm">
-          </video>
-<!--
-          <video class="w-full max-w-3xl rounded-lg shadow-lg" controls>
-            
-            <source src="{{ proyecto?.video}}" type="video/webm">
-            Tu navegador no soporta la reproducción de video.
-          </video>
-        -->
-        </div>
-    <!-- Imagen proyecto -->
-    <div class="h-[21rem] rounded-lg w-full sm:w-[32rem] shrink-0">
-        <img alt="testimonial image" loading="lazy" width="768" height="768" decoding="async" data-nimg="1"
-            class="h-full rounded-lg w-full object-cover" style="color: transparent;"
-            src="{{proyecto.imagenes[0].ruta}}">
+    @if(proyecto?.participaciones!.length>0){
+    <div class="flex items-center w-full">
+      <h6 class="text-base font-extralight text-blue-gray-900 leading-6">
+        {{proyecto?.participaciones![0].resultado_es+proyecto.eventos[0].titulo_es}}
+      </h6>
     </div>
-</div>
+    }
+    
+    <div class="flex flex-col w-full mt-4">
+      <div class="flex items-center gap-2">
+        <img src="{{proyecto?.imagen_autor}}" alt="" class="w-10 h-10 rounded-full object-cover cursor-pointer mr-2">
+        <div class="flex flex-col">
+          <h6 class="text-s text-[rgba(50,110,118,1)]">Autor</h6>
+          <h6 class="text-base font-normal text-blue-gray-900">
+            {{ proyecto?.nombre }} {{ proyecto?.apellido1 }} {{ proyecto?.apellido2 }}
+          </h6>
+        </div>
+      </div>
+    </div>
 
 
+
+    <!-- Reproductor de Video a Full Ancho -->
+     @if(proyecto?.video){
+    <div class="w-full pt-8 mb-8 w-full">
+      <video class="w-full rounded-lg shadow-lg" controls>
+        <source src="proyectos/videos/demo.webm" type="video/webm">
+        Tu navegador no soporta la reproducción de video.
+      </video>
+    </div>
+    }
+    
+    <!-- Contenido en dos columnas -->
+    <div class="pt-8 w-full lg:grid lg:grid-cols-2 lg:gap-10 h-full">
+      <!-- Info proyecto -->
+      <div class="h-full flex flex-col">
+        <div id="info" class="flex-grow overflow-auto">
+          <div class="mb-10 lg:mb-0 overflow-clip">
+            
+            <div class="flex items-center w-full max-h-fit">
+              <h6 class="text-base font-extralight text-blue-gray-900 leading-6">
+                {{proyecto.resumen_es}}
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Imagen proyecto -->
+      <div class="h-[21rem] rounded-lg w-full flex flex-col items-end text-right space-y-2">
+        <img alt="Imagen del proyecto" loading="lazy" width="768" height="768" decoding="async" class="h-full rounded-lg w-full object-cover" src="{{proyecto.imagenes[0].ruta}}">
+        <div class="pt-4  flex flex-col items-end text-right space-y-2">
+        @if(proyecto?.web){
+          <a href="{{proyecto?.web}}" target="_blank" class="flex items-center gap-2 text-[rgba(50,110,118,1)] hover:underline">
+            Sitio del proyecto
+            <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M5.63605 5.63605C7.19815 4.07395 9.73081 4.07395 11.2929 5.63605L14.1213 8.46448C15.6834 10.0266 15.6834 12.5592 14.1213 14.1213C13.7308 14.5119 13.0976 14.5119 12.7071 14.1213C12.3166 13.7308 12.3166 13.0976 12.7071 12.7071C13.4882 11.9261 13.4882 10.6597 12.7071 9.87869L9.87869 7.05026C9.09764 6.26922 7.83131 6.26922 7.05026 7.05026C6.26922 7.83131 6.26922 9.09764 7.05026 9.87869L7.75737 10.5858C8.1479 10.9763 8.14789 11.6095 7.75737 12C7.36685 12.3905 6.73368 12.3905 6.34316 12L5.63605 11.2929C4.07395 9.73081 4.07395 7.19815 5.63605 5.63605ZM11.2929 9.8787C11.6834 10.2692 11.6834 10.9024 11.2929 11.2929C10.5119 12.074 10.5119 13.3403 11.2929 14.1213L14.1213 16.9498C14.9024 17.7308 16.1687 17.7308 16.9498 16.9498C17.7308 16.1687 17.7308 14.9024 16.9498 14.1213L16.2427 13.4142C15.8521 13.0237 15.8521 12.3905 16.2427 12C16.6332 11.6095 17.2663 11.6095 17.6569 12L18.364 12.7071C19.9261 14.2692 19.9261 16.8019 18.364 18.364C16.8019 19.9261 14.2692 19.9261 12.7071 18.364L9.8787 15.5356C8.3166 13.9735 8.3166 11.4408 9.8787 9.8787C10.2692 9.48817 10.9024 9.48817 11.2929 9.8787Z" fill="#000000"/>
+            </svg>
+          </a> 
+        }
+        @if(proyecto?.ruc){
+          <a href="{{proyecto?.ruc}}" target="_blank" class="flex items-center gap-2 text-[rgba(50,110,118,1)] hover:underline">
+            Memoria del proyecto
+            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 17H15M9 13H15M9 9H10M13 3H8.2C7.0799 3 6.51984 3 6.09202 3.21799C5.71569 3.40973 5.40973 3.71569 5.21799 4.09202C5 4.51984 5 5.0799 5 6.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.0799 21 8.2 21H15.8C16.9201 21 17.4802 21 17.908 20.782C18.2843 20.5903 18.5903 20.2843 18.782 19.908C19 19.4802 19 18.9201 19 17.8V9M13 3L19 9M13 3V7.4C13 7.96005 13 8.24008 13.109 8.45399C13.2049 8.64215 13.3578 8.79513 13.546 8.89101C13.7599 9 14.0399 9 14.6 9H19" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        }
+        </div>
+    </div>
+    </div>
+  </div>
   </div>
 </section>
-
-
-<!--
-<section class="px-8 py-10">
-    <div
-      class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 border border-gray-300"
-    >
-      <div
-        class="relative bg-clip-border mt-4 mx-4 rounded-xl overflow-hidden bg-white text-gray-700 flex overflow-visible gap-y-4 flex-wrap items-start justify-between rounded-none"
-      >
-        <div>
-          <h1
-            class="block antialiased tracking-normal font-sans text-5xl font-semibold leading-tight text-blue-gray-900 !text-2xl mb-1"
-          >
-            Top Creators
-          </h1>
-          <p
-            class="block antialiased font-sans text-base font-light leading-relaxed text-blue-gray-900 !text-lg font-normal text-gray-600"
-          >
-            The most sought-after collections across the entire ecosystem.
-          </p>
-        </div>
-        <div class="flex shrink-0 gap-2">
-          <button
-            class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-4 rounded-lg border border-gray-900 text-gray-900 hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] border-gray-300"
-            type="button"
-            data-ripple-dark="true"
-          >
-            Last 24h</button
-          ><button
-            class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-4 rounded-lg border border-gray-900 text-gray-900 hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] border-gray-300"
-            type="button"
-            data-ripple-dark="true"
-          >
-            Last week</button
-          ><button
-            class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-4 rounded-lg border border-gray-900 text-gray-900 hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85]"
-            type="button"
-            data-ripple-dark="true"
-          >
-            Last month
-          </button>
-        </div>
-      </div>
-      <div
-        class="p-6 grid xl:grid-cols-3 grid-cols-1 gap-4 px-4"
-      >
-        <div
-          class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md border border-gray-300 overflow-hidden shadow-sm"
-        >
-          <div class="p-6 p-4">
-            <p
-              class="block antialiased font-sans text-base font-light leading-relaxed text-blue-gray-900 !text-base !font-semibold mb-1"
-            >
-              #1
-            </p>
-            <div class="my-4 flex items-start justify-between">
-              <div class="flex items-center gap-3">
-                <img
-                  src="https://www.material-tailwind.com/img/avatar1.jpg"
-                  alt="Tina Andrew"
-                  class="inline-block relative object-cover object-center !rounded-full w-12 h-12 rounded-lg"
-                />
-                <div>
-                  <h6
-                    class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-blue-gray-900"
-                  >
-                    Tina Andrew
-                  </h6>
-                  <p
-                    class="block antialiased font-sans text-sm font-light leading-normal text-gray-700 font-medium"
-                  >
-                    Creator
-                  </p>
-                </div>
-              </div>
-              <button
-                class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-4 rounded-lg border border-gray-900 text-gray-900 hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] border-gray-300"
-                type="button"
-                data-ripple-dark="true"
-              >
-                see collection
-              </button>
-            </div>
-            <div class="grid grid-cols-3 gap-2">
-              <img
-                src="/image/web3-card-1.svg"
-                class="h-full w-full object-cover rounded-xl"
-                alt="name"
-              /><img
-                src="/image/web3-card-2.svg"
-                class="h-full w-full object-cover rounded-xl"
-                alt="name"
-              /><img
-                src="/image/web3-card-3.svg"
-                class="h-full w-full object-cover rounded-xl"
-                alt="name"
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md border border-gray-300 overflow-hidden shadow-sm"
-        >
-          <div class="p-6 p-4">
-            <p
-              class="block antialiased font-sans text-base font-light leading-relaxed text-blue-gray-900 !text-base !font-semibold mb-1"
-            >
-              #2
-            </p>
-            <div class="my-4 flex items-start justify-between">
-              <div class="flex items-center gap-3">
-                <img
-                  src="https://www.material-tailwind.com/image/avatar2.jpg"
-                  alt="Linde Michael"
-                  class="inline-block relative object-cover object-center !rounded-full w-12 h-12 rounded-lg"
-                />
-                <div>
-                  <h6
-                    class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-blue-gray-900"
-                  >
-                    Linde Michael
-                  </h6>
-                  <p
-                    class="block antialiased font-sans text-sm font-light leading-normal text-gray-700 font-medium"
-                  >
-                    Creator
-                  </p>
-                </div>
-              </div>
-              <button
-                class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-4 rounded-lg border border-gray-900 text-gray-900 hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] border-gray-300"
-                type="button"
-                data-ripple-dark="true"
-              >
-                see collection
-              </button>
-            </div>
-            <div class="grid grid-cols-3 gap-2">
-              <img
-                src="/image/web3-card-5-mini.svg"
-                class="h-full w-full object-cover rounded-xl"
-                alt="name"
-              /><img
-                src="/image/web3-card-6-mini.svg"
-                class="h-full w-full object-cover rounded-xl"
-                alt="name"
-              /><img
-                src="/image/web3-card-7-mini.svg"
-                class="h-full w-full object-cover rounded-xl"
-                alt="name"
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md border border-gray-300 overflow-hidden shadow-sm"
-        >
-          <div class="p-6 p-4">
-            <p
-              class="block antialiased font-sans text-base font-light leading-relaxed text-blue-gray-900 !text-base !font-semibold mb-1"
-            >
-              #3
-            </p>
-            <div class="my-4 flex items-start justify-between">
-              <div class="flex items-center gap-3">
-                <img
-                  src="https://www.material-tailwind.com/image/avatar7.svg"
-                  alt="Misha Stam"
-                  class="inline-block relative object-cover object-center !rounded-full w-12 h-12 rounded-lg"
-                />
-                <div>
-                  <h6
-                    class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-blue-gray-900"
-                  >
-                    Misha Stam
-                  </h6>
-                  <p
-                    class="block antialiased font-sans text-sm font-light leading-normal text-gray-700 font-medium"
-                  >
-                    Creator
-                  </p>
-                </div>
-              </div>
-              <button
-                class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-4 rounded-lg border border-gray-900 text-gray-900 hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] border-gray-300"
-                type="button"
-                data-ripple-dark="true"
-              >
-                see collection
-              </button>
-            </div>
-            <div class="grid grid-cols-3 gap-2">
-              <img
-                src="/image/web3-card-4.svg"
-                class="h-full w-full object-cover rounded-xl"
-                alt="name"
-              /><img
-                src="/image/web3-card-4.svg"
-                class="h-full w-full object-cover rounded-xl"
-                alt="name"
-              /><img
-                src="/image/web3-card-4.svg"
-                class="h-full w-full object-cover rounded-xl"
-                alt="name"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  -->

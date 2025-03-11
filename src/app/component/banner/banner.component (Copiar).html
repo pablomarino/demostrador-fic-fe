@@ -1,10 +1,10 @@
 <!-- <div class="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-none py-8 lg:flex-row">-->
-<div class="p-6 w-full lg:gap-10 h-full lg:!flex justify-between bg-[rgba(50,110,118,.1)]">
-    <!-- Info proyecto-->
+<div class="p-6 w-full lg:gap-10 h-full lg:!flex justify-between bg-slate-100">
+    <!-- Info proyecto + Botonera-->
     <div class="h-full flex flex-col">
         <!-- Información del proyecto -->
         <div id="info" class="flex-grow overflow-auto">
-            <div class="h-[18rem] mb-10 lg:mb-0 lg:h-[24rem] sm:h-[11rem] overflow-clip">
+            <div class="h-[18rem] mb-10 lg:mb-0 h-[18rem] overflow-clip">
                 <!-- Titulo proyecto-->
                 <p
                     class="text-[#132b2e] block antialiased tracking-normal font-sans text-3xl leading-snug text-blue-gray-900 mb-3 font-bold  leading-none lg:max-w-xl line-clamp-3 w-full overflow-hidden text-ellipsis ![display:-webkit-box] ![webkit-box-orient:vertical]">
@@ -31,7 +31,7 @@
 
 
 
-                <div class="mt-4">
+                <div class="flex flex-col w-full mt-4">
                     <!-- Contenedor de imagen y texto en dos columnas alineadas a la izquierda -->
                     <div class="flex items-center gap-4">
                         <!-- Columna 1: Imagen -->
@@ -39,7 +39,7 @@
                             class="w-10 h-10 rounded-full object-cover cursor-pointer mr-2">
 
                         <!-- Columna 2: Nombre y rol -->
-                        <div>
+                        <div class="flex flex-col">
                             <h6 class="text-base font-normal text-blue-gray-900">
                                 {{ proyectos[selected_project]?.nombre }}
                                 {{ proyectos[selected_project]?.apellido1 }}
@@ -47,22 +47,16 @@
                             </h6>
                             <h6 class="text-sm text-[rgba(50,110,118,1)]">Autor</h6>
                         </div>
-                        <button (click)="navigate_to_project()" type="button" 
-                        class="text-white 
-                        bg-[rgb(50,110,118)] hover:bg-[rgb(50,110,118,.8)] 
-                        focus:ring-4 focus:ring-blue-300 
-                        font-medium rounded-md 
-                        text-sm 
-                        px-5 py-2.5 me-2 mb-2
-                        ml-auto 
-                        ">ver más</button>
-                                        
                     </div>
 
- 
+                    <!-- Botón alineado a la derecha -->
+                    <button (click)="navigate_to_project()" type="button"
+                        class="ml-auto select-none font-sans font-bold text-center uppercase transition-all 
+                    disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs 
+                     text-gray-900 hover:opacity-75 focus:outline-none focus:ring-0 active:opacity-[0.85] border-gray-300 text-sm font-extralight pr-8">
+                        ver más
 
-                    
-                    
+                    </button>
 
                 </div>
 
@@ -70,19 +64,9 @@
             </div>
         </div>
 
-
-    </div>
-
-
-    <!-- Imagen proyecto -->
-    <div class="h-[24rem] rounded-lg w-auto shrink-0 flex flex-col">
-        <img alt="{{proyectos[selected_project].imagenes[0].alt_text_es}}" loading="lazy" width="768" height="768"
-            decoding="async" data-nimg="1" class="h-full rounded-lg w-full object-cover" style="color: transparent;"
-            src="{{proyectos[selected_project].imagenes[0].ruta}}">
-
         <!-- Botonera -->
 
-        <div class="flex items-center gap-1 h-12 mt-6 w-auto">
+        <div class="flex items-center gap-1 h-12">
             @if (proyectos.length > 0) {
             @for (proyecto of proyectos; track proyecto.id_proyecto; let i = $index) {
 
@@ -100,6 +84,14 @@
             console.log("Error no data")
             }
         </div>
+    </div>
+
+
+    <!-- Imagen proyecto -->
+    <div class="h-[21rem] rounded-lg w-full sm:w-[32rem] shrink-0">
+        <img alt="testimonial image" loading="lazy" width="768" height="768" decoding="async" data-nimg="1"
+            class="h-full rounded-lg w-full object-cover" style="color: transparent;"
+            src="{{proyectos[selected_project].imagenes[0].ruta}}">
     </div>
 
 

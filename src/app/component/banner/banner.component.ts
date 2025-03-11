@@ -19,7 +19,7 @@ export class BannerComponent {
   constructor(private restService: RestService, 
     private router: Router/*, private cd: ChangeDetectorRef*/) {}
     private intervalId: any;
-    private update_interval = 15000;
+    private update_interval = 10000;
     private visible_projects:number = 7;
 
   ngOnInit(): void {
@@ -44,13 +44,7 @@ export class BannerComponent {
   }
 
   navigate_to_project() {
-    
-    console.log("saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-    console.log(this.proyectos)
-    console.log(this.selected_project)
-    console.log(this.proyectos[this.selected_project])
-    console.log(this.proyectos[this.selected_project].id_proyecto)
-    this.router.navigate([`/projects/${this.proyectos[this.selected_project].id_proyecto}`]);
+     this.router.navigate([`/projects/${this.proyectos[this.selected_project].id_proyecto}`]);
   }
 
   // Función para hacer shuffle de una matriz
