@@ -17,6 +17,7 @@ import { FooterComponent } from "./component/footer/footer.component";
 })
 export class AppComponent {
   title = 'demostrador-fic';
+  idioma: string = 'es';
   
   data!:Proyecto[];
 

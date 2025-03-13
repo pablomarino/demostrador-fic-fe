@@ -5,10 +5,10 @@ import { ProjectComponent } from './component/pages/project/project.component';
 import { WallComponent } from './component/pages/wall/wall.component';
 
 export const routes: Routes = [
-    { path: 'landing', component: LandingComponent },
+    { path: 'home', component: LandingComponent },
     { path: 'projects/:id', component: ProjectComponent },
     { path: 'projects', component: WallComponent },
-    { path: '', redirectTo: '/landing', pathMatch: 'full' },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'error', component: ErrorComponent },
-    { path: '**', redirectTo: '/error', pathMatch: 'full' },
+    { path: '**', redirectTo: 'error', pathMatch: 'full' },
 ]
