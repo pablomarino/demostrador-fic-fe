@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Proyecto } from '../../../interfaces/proyecto';
 import { RestService } from '../../../services/rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LanguageService } from '../../../services/language.service';
 
 @Component({
   selector: 'app-project',
@@ -17,7 +18,8 @@ export class ProjectComponent implements OnInit{
   constructor(
     private route: ActivatedRoute,
     private restService: RestService, 
-    private router: Router
+    private router: Router,
+    private languageService: LanguageService,
   ){}
 
   ngOnInit():void{
@@ -34,4 +36,10 @@ export class ProjectComponent implements OnInit{
       }
     });
   }
+
+
+  getTraduccion(id:number):string{
+    return this.languageService.getTraduccion(id) || "";
+  }
+
 }

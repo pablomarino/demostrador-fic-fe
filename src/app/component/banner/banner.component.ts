@@ -2,6 +2,7 @@ import { Component, ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
 import { Proyecto } from '../../interfaces/proyecto';
 import { RestService } from '../../services/rest.service';
 import { Router } from '@angular/router';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-banner',
@@ -17,34 +18,39 @@ export class BannerComponent {
   
 
   constructor(private restService: RestService, 
-    private router: Router/*, private cd: ChangeDetectorRef*/) {}
+    private router: Router,
+    private languageService: LanguageService) {}
     private intervalId: any;
     private update_interval = 10000;
     private visible_projects:number = 7;
+    currentLang!: string;
 
   ngOnInit(): void {
+    
+
+    this.languageService.lang$.subscribe(lang => {
+      this.currentLang = lang;
+    });
+
     this.restService.getProyectos().subscribe({
       next: (data) => {
         this.proyectos=this.shuffleArray(data.slice(0,this.visible_projects))
-        //this.proyectos = data;
       },
       error: (error) => {
         console.error('Error al obtener proyectos:', error);
       }
     });
-
     this.startTimer();
   }
 
   update_selected_project(arg:number){
     clearInterval(this.intervalId);
     this.selected_project=arg;
-    //this.cd.detectChanges();
     this.startTimer()
   }
 
   navigate_to_project() {
-     this.router.navigate([`/projects/${this.proyectos[this.selected_project].id_proyecto}`]);
+     this.router.navigate([`${this.currentLang}/proyecto/${this.proyectos[this.selected_project].id_proyecto}`]);
   }
 
   // Función para hacer shuffle de una matriz
@@ -66,5 +72,9 @@ export class BannerComponent {
 
   ngOnDestroy() {
     clearInterval(this.intervalId); // Limpia el intervalo cuando el componente se destruye
+  }
+
+  getTraduccion(id: number): string {
+    return this.languageService.getTraduccion(id)!;
   }
 }

@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { RouterOutlet, RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { RestService } from './services/rest.service';
 import { Proyecto } from './interfaces/proyecto';
 import { NavigationComponent } from "./component/navigation/navigation.component";
 import { FooterComponent } from "./component/footer/footer.component";
+import { LanguageService } from './services/language.service';
 //import { BannerComponent } from "./component/banner/banner.component";
 //import { LandingComponent } from "./component/pages/landing/landing.component";
 //import { ErrorComponent } from './component/pages/error/error.component';
@@ -21,8 +22,8 @@ export class AppComponent {
   
   data!:Proyecto[];
 
-  constructor(private service: RestService){}  
-
+  constructor(private service: RestService, private router:Router, private languageService: LanguageService){}  
+  
   ngOnInit() {
     this.service.getProyectos().subscribe(
       (response) => {
@@ -33,5 +34,8 @@ export class AppComponent {
         console.error('Error al obtener los datos:', error);
       }
     );
+
+    const lang = this.languageService.getLang();
+
   }
 }

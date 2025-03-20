@@ -3,12 +3,13 @@ import { LandingComponent } from './component/pages/landing/landing.component';
 import { ErrorComponent } from './component/pages/error/error.component';
 import { ProjectComponent } from './component/pages/project/project.component';
 import { WallComponent } from './component/pages/wall/wall.component';
+import { LanguageGuard } from './guards/language.guard';
 
 export const routes: Routes = [
-    { path: 'home', component: LandingComponent },
-    { path: 'projects/:id', component: ProjectComponent },
-    { path: 'projects', component: WallComponent },
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'error', component: ErrorComponent },
-    { path: '**', redirectTo: 'error', pathMatch: 'full' },
+    { path: ':lang/inicio', component: LandingComponent , canActivate: [LanguageGuard] },
+    { path: ':lang/proyecto/:id', component: ProjectComponent , canActivate: [LanguageGuard] },
+    { path: ':lang/proyectos', component: WallComponent , canActivate: [LanguageGuard] },
+    { path: '', redirectTo: 'es/inicio', pathMatch: 'full' },
+    { path: ':lang/error', component: ErrorComponent , canActivate: [LanguageGuard] },
+    { path: '**', redirectTo: 'es/error', pathMatch: 'full' },
 ]

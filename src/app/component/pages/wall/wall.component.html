@@ -3,21 +3,23 @@
         <div class="p-12 w-full h-full bg-slate-100 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
 
             @for (proyecto of proyectos; track $index) {
-            <a href="projects/{{proyecto.id_proyecto}}" target="_self" class="h-[24rem] rounded-lg w-full flex flex-col text-left space-y-2 bg-white shadow-lg p-4 transform transition duration-300 hover:scale-105 hover:shadow-2xl hover:ring-4 hover:ring-[#3D5D75]">
+            <a href="{{currentLang}}/proyecto/{{proyecto.id_proyecto}}" target="_self" class="h-[24rem] rounded-lg w-full flex flex-col text-left space-y-2 bg-white shadow-lg p-4 transform transition duration-300 hover:scale-105 hover:shadow-2xl hover:ring-4 hover:ring-[#3D5D75]">
                 <!-- info -->
                 <div class="h-[10rem]">
                 <p
                     class="block overflow-none h-auto font-sans text-xl text-[#132b2e] antialiased tracking-normal leading-snug text-blue-gray-900 mb-3 font-bold leading-none lg:max-w-xl line-clamp-3 w-full overflow-hidden text-ellipsis ![display:-webkit-box] ![webkit-box-orient:vertical]">
-                    {{proyecto.titulo_es}}
+                    {{getTraduccion(proyecto.ref_cadena_titulo)}}
                 </p>
-                @if(proyecto.eventos[0].titulo_es){
+                @if(proyecto.eventos[0].ref_cadena_titulo){
                 <p class="h-[1rem] h-auto block font-sans text-sm text-blue-gray-700 w-full line-clamp-2 pb-4">
-                    {{proyecto.eventos[0].titulo_es}}
+                    {{
+                        getTraduccion(proyecto.eventos[0].ref_cadena_titulo)
+                    }}
                 </p>
                 }
                 </div>
                 <!-- imagen -->
-                <img alt="Imagen del proyecto" loading="lazy" width="768" height="768" decoding="async" class="h-full rounded-lg w-full object-cover" src="{{proyecto.imagenes[0].ruta}}">
+                <img alt="Imagen del proyecto" loading="lazy" width="768" height="768" decoding="async" class="h-full rounded-lg w-full object-cover" src="{{proyecto.imagenes[0].url}}">
                 <!-- ver mas-->
             </a>
             }
