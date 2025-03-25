@@ -15,26 +15,32 @@ export class WallComponent {
   currentLang!: string;
   proyectos: Proyecto[] = [];
   constructor(
-    private restService: RestService, 
-    private router: Router,
-    private languageService: LanguageService
-  ) {}
-    
-    ngOnInit(): void {
-      this.languageService.lang$.subscribe(lang => {
-        this.currentLang = lang;
-      });
+    private restService: RestService,
+    public languageService: LanguageService
+  ) { }
+   // Array para gestionar el estado de carga de las imágenes
+   imageLoading: boolean[] = [];
 
-      this.restService.getProyectos().subscribe({
-        next: (data) => {
-          this.proyectos=data;
-        },
-        error: (error) => {
-          console.error('Error al obtener proyectos:', error);
-        }
-      });
-    }
-    getTraduccion(id:number):string{
-      return this.languageService.getTraduccion(id) || "";
-    }
+  ngOnInit(): void {
+
+    this.restService.getProyectos().subscribe({
+      next: (data) => {
+        this.proyectos = data;
+        this.imageLoading = new Array(this.proyectos.length).fill(true);
+      },
+      error: (error) => {
+        this.restService.showErrorPage(this.languageService.getLanguage())
+        console.error('Error al obtener proyectos:', error);
+      }
+    });
+  }
+
+
+
+   // Función que se ejecuta cuando la imagen se ha cargado
+   onImageLoad(index: number): void {
+     // Ocultar el spinner para la imagen cargada
+     this.imageLoading[index] = false;
+   }
+
 }

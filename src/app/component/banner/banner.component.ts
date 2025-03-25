@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { Proyecto } from '../../interfaces/proyecto';
 import { RestService } from '../../services/rest.service';
 import { Router } from '@angular/router';
@@ -15,28 +15,26 @@ import { LanguageService } from '../../services/language.service';
 export class BannerComponent {
   proyectos: Proyecto[] = [];
   selected_project: number = 0;
-  
 
-  constructor(private restService: RestService, 
+
+  constructor(
+    private restService: RestService,
     private router: Router,
-    private languageService: LanguageService) {}
-    private intervalId: any;
-    private update_interval = 10000;
-    private visible_projects:number = 7;
-    currentLang!: string;
+    public languageService: LanguageService
+  ) {}
+
+  private intervalId: any;
+  private update_interval = 10000;
+  private visible_projects:number = 7;
 
   ngOnInit(): void {
-    
-
-    this.languageService.lang$.subscribe(lang => {
-      this.currentLang = lang;
-    });
 
     this.restService.getProyectos().subscribe({
       next: (data) => {
         this.proyectos=this.shuffleArray(data.slice(0,this.visible_projects))
       },
       error: (error) => {
+        this.restService.showErrorPage(this.languageService.getLanguage())
         console.error('Error al obtener proyectos:', error);
       }
     });
@@ -50,11 +48,11 @@ export class BannerComponent {
   }
 
   navigate_to_project() {
-     this.router.navigate([`${this.currentLang}/proyecto/${this.proyectos[this.selected_project].id_proyecto}`]);
+     this.router.navigate([`${this.languageService.getLanguage()}/proyecto/${this.proyectos[this.selected_project].id_proyecto}`]);
   }
 
   // Función para hacer shuffle de una matriz
-  shuffleArray(array: any[]): any[] {
+  shuffleArray(array: Proyecto[]): Proyecto[] {
     let shuffledArray = array.slice();  // Copiar la matriz original
     for (let i = shuffledArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -72,9 +70,5 @@ export class BannerComponent {
 
   ngOnDestroy() {
     clearInterval(this.intervalId); // Limpia el intervalo cuando el componente se destruye
-  }
-
-  getTraduccion(id: number): string {
-    return this.languageService.getTraduccion(id)!;
   }
 }

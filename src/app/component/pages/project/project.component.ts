@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Proyecto } from '../../../interfaces/proyecto';
 import { RestService } from '../../../services/rest.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { LanguageService } from '../../../services/language.service';
 
 @Component({
@@ -14,12 +14,11 @@ import { LanguageService } from '../../../services/language.service';
 export class ProjectComponent implements OnInit{
   proyecto!: Proyecto;
   id: string | null = null;
-  
+
   constructor(
     private route: ActivatedRoute,
-    private restService: RestService, 
-    private router: Router,
-    private languageService: LanguageService,
+    private restService: RestService,
+    public languageService: LanguageService,
   ){}
 
   ngOnInit():void{
@@ -28,18 +27,13 @@ export class ProjectComponent implements OnInit{
     });
     this.restService.getProyecto(this.id!).subscribe({
       next: (data) => {
-        console.log(data)
+        //console.log(data)
         this.proyecto = data;
       },
       error: (error) => {
+        this.restService.showErrorPage(this.languageService.getLanguage())
         console.error('Error al obtener proyectos:', error);
       }
     });
   }
-
-
-  getTraduccion(id:number):string{
-    return this.languageService.getTraduccion(id) || "";
-  }
-
 }

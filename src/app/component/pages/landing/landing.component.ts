@@ -10,10 +10,5 @@ import { LanguageService } from '../../../services/language.service';
   styleUrl: './landing.component.css'
 })
 export class LandingComponent {
-  constructor(private languageService: LanguageService) { }
-  
-  getTraduccion(id: number): string {
-    console.log (`landing.component--------------------------${{id}}`)
-    return this.languageService.getTraduccion(id)!;
-  }
+  constructor(public languageService: LanguageService) { }
 }

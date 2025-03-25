@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LanguageService } from '../../../services/language.service';
 
 @Component({
   selector: 'app-error',
@@ -8,7 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './error.component.css'
 })
 export class ErrorComponent {
-  error_title = "Se ha producido un error"
-  error_description = "Compruebe la direccion a la que esta tratando de acceder, si el error persiste pongase en contacto con el servicio técnico"
-
+  constructor(public languageService:LanguageService){}
+  error_title?:string;
+  error_description?:string;
 }

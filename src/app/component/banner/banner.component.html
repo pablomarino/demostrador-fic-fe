@@ -7,7 +7,7 @@
                 <!-- Titulo proyecto-->
                 <p
                     class="text-[#132b2e] block antialiased tracking-normal font-sans text-3xl leading-snug text-blue-gray-900 mb-3 font-bold  leading-none lg:max-w-xl line-clamp-3 w-full overflow-hidden text-ellipsis ![display:-webkit-box] ![webkit-box-orient:vertical]">
-                    {{getTraduccion(proyectos[selected_project].ref_cadena_titulo) || "--"}}
+                    {{this.languageService.getTranslation(proyectos[selected_project].ref_cadena_titulo)}}
                 </p>
 
                 <!-- Eventos en los que ha participado -->
@@ -15,15 +15,15 @@
                 <div class="flex items-center w-full">
                     <h6
                         class="text-base font-extralight text-blue-gray-900 leading-6 line-clamp-2 overflow-hidden text-ellipsis ![display:-webkit-box] ![webkit-box-orient:vertical]">
-                        {{getTraduccion(proyectos[selected_project].participaciones[0].ref_cadena_resultado)}}
-                        {{getTraduccion(proyectos[selected_project].eventos[0].ref_cadena_titulo)}}
+                        {{this.languageService.getTranslation(proyectos[selected_project].participaciones[0].ref_cadena_resultado)}}
+                        {{this.languageService.getTranslation(proyectos[selected_project].eventos[0].ref_cadena_titulo) || proyectos[selected_project].eventos[0].ref_cadena_titulo}}
                     </h6>
                 </div>
                 }@else {
                 <div class="flex items-center w-full">
                     <h6
                         class="text-base font-extralight text-blue-gray-900 leading-6 line-clamp-2 overflow-hidden text-ellipsis ![display:-webkit-box] ![webkit-box-orient:vertical]">
-                        {{getTraduccion(proyectos[selected_project].ref_cadena_resumen)}}
+                        {{this.languageService.getTranslation(proyectos[selected_project].ref_cadena_resumen)}}
                     </h6>
                 </div>
                 }
@@ -42,18 +42,18 @@
                                 {{ proyectos[selected_project]?.apellido2 }}
                             </h6>
                             <h6 class="text-sm text-[rgba(50,110,118,1)]">
-                                {{getTraduccion(proyectos[selected_project].ref_cadena_titulacion) || "--"}}
+                                {{this.languageService.getTranslation(proyectos[selected_project].ref_cadena_titulacion)}}
                             </h6>
                         </div>
-                        <button (click)="navigate_to_project()" type="button" class="text-white 
-                        bg-[rgb(50,110,118)] hover:bg-[rgb(50,110,118,.8)] 
-                        focus:ring-4 focus:ring-blue-300 
-                        font-medium rounded-md 
-                        text-sm 
+                        <button (click)="this.navigate_to_project()" type="button" class="text-white
+                        bg-[rgb(50,110,118)] hover:bg-[rgb(50,110,118,.8)]
+                        focus:ring-4 focus:ring-blue-300
+                        font-medium rounded-md
+                        text-sm
                         px-5 py-2.5 me-2 mb-2
-                        ml-auto 
+                        ml-auto
                         ">
-                        {{getTraduccion(8) || "--"}}
+                        {{this.languageService.getTranslation(8)}}
                     </button>
 
                     </div>
@@ -71,7 +71,6 @@
             src="{{proyectos[selected_project].imagenes[0].url}}">
 
         <!-- Botonera -->
-
         <div class="flex items-center gap-1 h-12 mt-6 w-auto">
             @if (proyectos.length > 0) {
             @for (proyecto of proyectos; track proyecto.id_proyecto; let i = $index) {

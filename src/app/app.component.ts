@@ -19,23 +19,26 @@ import { LanguageService } from './services/language.service';
 export class AppComponent {
   title = 'demostrador-fic';
   idioma: string = 'es';
-  
+
   data!:Proyecto[];
 
-  constructor(private service: RestService, private router:Router, private languageService: LanguageService){}  
-  
+  constructor(
+    private restService: RestService,
+    private router:Router,
+    private languageService: LanguageService
+  ){}
+
   ngOnInit() {
-    this.service.getProyectos().subscribe(
+    this.restService.getProyectos().subscribe(
       (response) => {
         this.data = response
         console.log(this.data)
       },
       (error) => {
+        //PAGINA_ERROR
+        this.restService.showErrorPage(this.languageService.getLanguage())
         console.error('Error al obtener los datos:', error);
       }
     );
-
-    const lang = this.languageService.getLang();
-
   }
 }
