@@ -22,7 +22,7 @@ export class NavigationComponent implements OnInit {
       filter(event => event instanceof NavigationEnd) // Filtrar solo los eventos de navegación finalizada.
     ).subscribe(() => {
       const languageFromURL = this.router.url.split('/')[1]; // Obtén el idioma de la URL.
-      console.log('LANG navigation.languageFromURL '+languageFromURL)
+      //console.log('LANG navigation.languageFromURL '+languageFromURL)
       this.languageService.changeLanguage(languageFromURL);
     });
   }

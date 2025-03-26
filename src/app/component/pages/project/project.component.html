@@ -19,10 +19,11 @@
       <div class="flex items-center gap-2">
         <img src="{{proyecto.imagen_autor}}" class="w-10 h-10 rounded-full object-cover cursor-pointer mr-2">
         <div class="flex flex-col">
-          <h6 class="text-s text-[rgba(50,110,118,1)]">Autor</h6>
           <h6 class="text-base font-normal text-blue-gray-900">
             {{ proyecto.nombre }} {{ proyecto.apellido1 }} {{ proyecto.apellido2 }}
           </h6>
+          <h6 class="text-s text-[rgba(50,110,118,1)]">{{this.languageService.getTranslation(this.proyecto.ref_cadena_titulacion)}}</h6>
+
         </div>
       </div>
     </div>

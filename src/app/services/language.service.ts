@@ -22,7 +22,6 @@ export class LanguageService {
     private metaService: Meta,
   ) { }
 
-
   changeLanguage(language: string) {
     this.language = language;
     this.fetchTranslation(language).then(() => {
@@ -63,7 +62,6 @@ export class LanguageService {
     const newUrl = urlSegments.join('/'); // Reconstruye la URL
     this.router.navigateByUrl(newUrl); // Navega a la nueva URL
   }
-
 
   setHtmlLanguage(language: string) {
     // Atributo de idioma del html

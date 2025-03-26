@@ -32,10 +32,9 @@ export class AppComponent {
     this.restService.getProyectos().subscribe(
       (response) => {
         this.data = response
-        console.log(this.data)
+        //console.log(this.data)
       },
       (error) => {
-        //PAGINA_ERROR
         this.restService.showErrorPage(this.languageService.getLanguage())
         console.error('Error al obtener los datos:', error);
       }

@@ -18,7 +18,7 @@ export class BannerComponent {
 
 
   constructor(
-    private restService: RestService,
+    public restService: RestService,
     private router: Router,
     public languageService: LanguageService
   ) {}
