@@ -28,9 +28,17 @@ export class BannerComponent {
   private visible_projects:number = 7;
 
   ngOnInit(): void {
-
     this.restService.getProyectos().subscribe({
       next: (data) => {
+        // Ordeno por el año del primer evento
+        data.sort((a, b) => {
+          // Extraemos el año de las fechas de los eventos
+          const yearA = new Date(a.eventos[0].fecha).getFullYear();
+          const yearB = new Date(b.eventos[0].fecha).getFullYear();
+          // Ordenamos de mayor a menor (descendente)
+          return yearB - yearA;
+        });
+        // 
         this.proyectos=this.shuffleArray(data.slice(0,this.visible_projects))
       },
       error: (error) => {

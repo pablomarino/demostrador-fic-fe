@@ -3,12 +3,23 @@
     @if(this.proyectos[selected_project]){
     <div class="h-full flex flex-col">
         <!-- Información del proyecto -->
-        <div id="info" class="flex-grow overflow-auto">
-            <div class="h-[18rem] mb-10 lg:mb-0 lg:h-[24rem] sm:h-[11rem] overflow-clip">
+        <div id="info" class="flex-grow">
+            <div class=" mb-10 lg:mb-0 h-[18rem] sm:h-[14rem]  lg:h-[24rem] ">
+                <div class="flex items-center space-x-2 pb-7 w-full justify-center sm:justify-start">
+                    <svg class="w-6 h-6 text-gray-800 dark:text-[#326e76]" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M5.566 4.657A4.505 4.505 0 016.75 4.5h10.5c.41 0 .806.055 1.183.157A3 3 0 0015.75 3h-7.5a3 3 0 00-2.684 1.657zM2.25 12a3 3 0 013-3h13.5a3 3 0 013 3v6a3 3 0 01-3 3H5.25a3 3 0 01-3-3v-6zM5.25 7.5c-.41 0-.806.055-1.184.157A3 3 0 016.75 6h10.5a3 3 0 012.683 1.657A4.505 4.505 0 0018.75 7.5H5.25z">
+                        </path>
+                    </svg>
+                    <h2 class="font-sans font-medium text-xl line-clamp-1 text-[rgba(50,110,118,1)]">
+                        {{ languageService.getTranslation(14) }}
+                    </h2>
+                </div>
                 <!-- Titulo proyecto-->
-
                 <p
-                    class="text-[#132b2e] block antialiased tracking-normal font-sans text-3xl leading-snug text-blue-gray-900 mb-3 font-bold  leading-none lg:max-w-xl line-clamp-3 w-full overflow-hidden text-ellipsis ![display:-webkit-box] ![webkit-box-orient:vertical]">
+                    class="text-[#132b2e] block antialiased tracking-normal font-sans text-3xl text-blue-gray-900 mb-3 font-bold  leading-none lg:max-w-xl line-clamp-3 w-full overflow-hidden text-ellipsis ![display:-webkit-box] ![webkit-box-orient:vertical]">
                     {{this.languageService.getTranslation(proyectos[selected_project].ref_cadena_titulo)}}
                 </p>
 
@@ -18,7 +29,8 @@
                     <h6
                         class="text-base font-extralight text-blue-gray-900 leading-6 line-clamp-2 overflow-hidden text-ellipsis ![display:-webkit-box] ![webkit-box-orient:vertical]">
                         {{this.languageService.getTranslation(proyectos[selected_project].participaciones[0].ref_cadena_resultado)}}
-                        {{this.languageService.getTranslation(proyectos[selected_project].eventos[0].ref_cadena_titulo) || proyectos[selected_project].eventos[0].ref_cadena_titulo}}
+                        {{this.languageService.getTranslation(proyectos[selected_project].eventos[0].ref_cadena_titulo)
+                        || proyectos[selected_project].eventos[0].ref_cadena_titulo}}
                     </h6>
                 </div>
                 }@else {
@@ -56,8 +68,8 @@
                         px-5 py-2.5 me-2 mb-2
                         ml-auto
                         ">
-                        {{this.languageService.getTranslation(8)}}
-                    </button>
+                            {{this.languageService.getTranslation(8)}}
+                        </button>
 
                     </div>
                 </div>
@@ -70,13 +82,12 @@
     <!-- Imagen proyecto -->
     <div class="h-[24rem] rounded-lg w-auto shrink-0 flex flex-col">
 
-
         <img loading="lazy" width="768" height="768" decoding="async" data-nimg="1"
             class="h-full rounded-lg w-full object-cover" style="color: transparent;"
             src="{{proyectos[selected_project].imagenes[0].url}}">
 
         <!-- Botonera -->
-        <div class="flex items-center gap-1 h-12 mt-6 w-auto">
+        <div class="flex items-center gap-1 h-12 mt-6 w-auto justify-center">
             @if (proyectos.length > 0) {
             @for (proyecto of proyectos; track proyecto.id_proyecto; let i = $index) {
 
@@ -91,10 +102,10 @@
             <div class="w-[1px] h-[36px] bg-blue-gray-100"></div>
             }
             } @else {
-              {{this.restService.showErrorPage(this.languageService.getLanguage())}}
+            {{this.restService.showErrorPage(this.languageService.getLanguage())}}
             }
         </div>
 
     </div>
-  }
+    }
 </div>
