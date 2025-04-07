@@ -1,5 +1,5 @@
 <section class=" px-8 sm:pt-8 lg:pt-12">
-  <div class="container max-w-screen-lg mx-auto">
+  <div class="container max-w-screen-xl mx-auto">
     @for(proyectos of proyectosAgrupados; track $index){
       <div class="flex items-center space-x-2 pt-24 pb-8 p-2 w-full justify-center sm:justify-start">
         <svg class="w-8 h-8 text-gray-800 dark:text-[#326e76]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -14,7 +14,7 @@
       </div>
       
 
-    <div class="p-12 w-full h-full bg-slate-100 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
+    <div class="p-12 w-full h-full bg-slate-100 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 
       @for (proyecto of proyectos.data; track $index) {
       <a href="{{this.languageService.getLanguage()}}/proyecto/{{proyecto.id_proyecto}}" target="_self"

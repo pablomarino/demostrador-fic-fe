@@ -1,6 +1,6 @@
 <nav class="bg-[rgba(50,110,118,1)] bg-opacity-80 block py-4 backdrop-saturate-200 backdrop-blur-2xl border-white/80 w-full max-w-full rounded-none px-4 text-white border-0 sticky top-0 z-50">
         <!-- Idiomas -->
-    <div class="absolute top-2 right-8 flex space-x-1 text-white text-sm subpixel-antialiased font-extralight">
+    <div class="absolute top-5 right-4 flex space-x-1 text-white text-sm subpixel-antialiased font-extralight">
             <button class="m-0 p-0 hover:text-gray-300" (click)="this.languageService.changeLanguage('gl')">galego</button><p>·</p>
             <button class="m-0 p-0 hover:text-gray-300" (click)="this.languageService.changeLanguage('es')">español</button><p>·</p>
             <button class="m-0 p-0 hover:text-gray-300" (click)="this.languageService.changeLanguage('en')">english</button>
@@ -19,8 +19,22 @@
 
 
 
+        <button
+        class="sm:block lg:hidden text-white focus:outline-none absolute top-5 left-4"
+        (click)="isMenuOpen = !isMenuOpen"
+        aria-label="Toggle menu"
+        >
 
-        <ul class="sm:flex sm:flex-col sm:items-start lg:flex lg:flex-row lg:gap-8">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+      
+      <ul
+      class="flex flex-col gap-4 sm:flex-col sm:items-start lg:flex lg:flex-row lg:gap-8 transition-all duration-300 ease-in-out"
+      [ngClass]="{'hidden': !isMenuOpen, 'mt-4': isMenuOpen, 'lg:flex': true}"
+    >
+    
             <li><a href="{{this.languageService.getLanguage()}}/proyectos" target="_self" class="antialiased font-sans text-base leading-relaxed flex items-center gap-2 font-medium text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-5 w-5">
                     <path d="M5.566 4.657A4.505 4.505 0 016.75 4.5h10.5c.41 0 .806.055 1.183.157A3 3 0 0015.75 3h-7.5a3 3 0 00-2.684 1.657zM2.25 12a3 3 0 013-3h13.5a3 3 0 013 3v6a3 3 0 01-3 3H5.25a3 3 0 01-3-3v-6zM5.25 7.5c-.41 0-.806.055-1.184.157A3 3 0 016.75 6h10.5a3 3 0 012.683 1.657A4.505 4.505 0 0018.75 7.5H5.25z"></path>

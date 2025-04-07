@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { RestService } from './services/rest.service';
 import { Proyecto } from './interfaces/proyecto';
-import { NavigationComponent } from "./component/navigation/navigation.component";
+import { HeaderComponent } from "./component/header/header.component";
 import { FooterComponent } from "./component/footer/footer.component";
 import { LanguageService } from './services/language.service';
 //import { BannerComponent } from "./component/banner/banner.component";
@@ -12,7 +12,7 @@ import { LanguageService } from './services/language.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavigationComponent, FooterComponent], //, BannerComponent, LandingComponent, ErrorComponent
+  imports: [RouterOutlet, HeaderComponent, FooterComponent], //, BannerComponent, LandingComponent, ErrorComponent
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

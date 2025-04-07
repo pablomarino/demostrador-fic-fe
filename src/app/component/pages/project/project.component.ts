@@ -14,6 +14,8 @@ import { LanguageService } from '../../../services/language.service';
 export class ProjectComponent implements OnInit{
   proyecto!: Proyecto;
   id: string | null = null;
+  showImageModal: boolean = false;
+  imagenSeleccionada: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -35,5 +37,14 @@ export class ProjectComponent implements OnInit{
         console.error('Error al obtener proyectos:', error);
       }
     });
+  }
+  
+  abrirModal(url: string) {
+    this.imagenSeleccionada = url;
+    this.showImageModal = true;
+  }
+  
+  cerrarModal() {
+    this.showImageModal = false;
   }
 }
