@@ -3,12 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Proyecto, Traduccion } from '../interfaces/proyecto';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RestService {
-  private baseUrl: string = 'http://localhost:3000';
+
+  private baseUrl: string = environment.apiUrl+":"+environment.apiPort;//'http://localhost:3000';
 
   constructor(
     private http: HttpClient,

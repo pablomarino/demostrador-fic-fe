@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd, RouterLink, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, RouterLink, RouterOutlet],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

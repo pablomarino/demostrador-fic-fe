@@ -17,7 +17,7 @@
     <div class="p-12 w-full h-full bg-slate-100 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 
       @for (proyecto of proyectos.data; track $index) {
-      <a href="{{this.languageService.getLanguage()}}/proyecto/{{proyecto.id_proyecto}}" target="_self"
+      <a routerLink="/{{this.languageService.getLanguage()}}/proyecto/{{proyecto.id_proyecto}}" target="_self"
         class="h-[24rem] rounded-lg w-full flex flex-col text-left space-y-2 bg-white shadow-lg p-4 transform transition duration-300 hover:scale-105 hover:shadow-2xl hover:ring-4 hover:ring-[#3D5D75]">
 
         <!-- info -->

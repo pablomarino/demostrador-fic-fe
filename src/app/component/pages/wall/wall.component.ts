@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { RestService } from '../../../services/rest.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { Proyecto } from '../../../interfaces/proyecto';
 import { LanguageService } from '../../../services/language.service';
 
 @Component({
   selector: 'app-wall',
   standalone: true,
-  imports: [],
+  imports: [RouterLink,RouterOutlet],
   templateUrl: './wall.component.html',
   styleUrl: './wall.component.css'
 })
