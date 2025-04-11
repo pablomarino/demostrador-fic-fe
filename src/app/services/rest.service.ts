@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 })
 export class RestService {
 
-  private baseUrl: string = environment.apiUrl+":"+environment.apiPort;//'http://localhost:3000';
+  private baseUrl: string = environment.apiURL+":"+environment.apiPort;
 
   constructor(
     private http: HttpClient,

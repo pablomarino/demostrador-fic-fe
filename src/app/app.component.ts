@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { APP_INITIALIZER, Component, OnInit } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive, Router } from '@angular/router';
+import { bakeEnv } from '@elemental-concept/env-bakery';
 import { RestService } from './services/rest.service';
 import { Proyecto } from './interfaces/proyecto';
 import { HeaderComponent } from "./component/header/header.component";

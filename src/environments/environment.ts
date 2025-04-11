@@ -1,6 +1,8 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost',  // Valor predeterminado, será sobrescrito en el contenedor
-    apiPort: 3000
+    //apiURL: 'http://localhost',  // Valor predeterminado, será sobrescrito en el contenedor
+    //apiPort: 3000
+    apiURL:"localhost",
+    apiPort:3000
   };
   

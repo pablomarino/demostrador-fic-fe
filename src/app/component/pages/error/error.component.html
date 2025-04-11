@@ -10,11 +10,8 @@
     </svg>
     <h1
       class="block antialiased tracking-normal font-sans text-5xl font-semibold leading-tight text-blue-gray-900 mt-7 !text-2xl md:text-3xl max-w-xl mx-auto !leading-snug">
-      {{this.languageService.getTranslation(14)}}
+      {{this.getTitulo()}}
     </h1>
-    <p
-      class="block antialiased font-sans text-base font-light leading-relaxed text-inherit !mt-4 md:max-w-2xl text-[18px] font-normal text-gray-500">
-      {{this.languageService.getTranslation(15)}}
-    </p>
+    <div [innerHTML]="this.getDescripcion()" class="block antialiased font-sans text-base font-light leading-relaxed text-inherit !mt-4 md:max-w-2xl text-[18px] font-normal text-gray-500"></div>
   </div>
 </div>
