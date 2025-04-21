@@ -3,11 +3,11 @@ import { Proyecto } from '../../../interfaces/proyecto';
 import { RestService } from '../../../services/rest.service';
 import { ActivatedRoute} from '@angular/router';
 import { LanguageService } from '../../../services/language.service';
-
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-project',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './project.component.html',
   styleUrl: './project.component.css'
 })
@@ -38,13 +38,41 @@ export class ProjectComponent implements OnInit{
       }
     });
   }
-  
+
   abrirModal(url: string) {
     this.imagenSeleccionada = url;
     this.showImageModal = true;
   }
-  
+
   cerrarModal() {
     this.showImageModal = false;
   }
+
+
+
+
+
+
+    imagenActual = 0;
+
+    // Para ir a la imagen anterior
+    anterior() {
+      if (this.imagenActual > 0) {
+        this.imagenActual--;
+      }
+    }
+
+    // Para ir a la siguiente imagen
+    siguiente() {
+      if (this.imagenActual < this.proyecto.imagenes.length - 1) {
+        this.imagenActual++;
+      }
+    }
+
+    // Para ir directamente a una imagen específica (clic en el punto)
+    irAImagen(index: number) {
+      this.imagenActual = index;
+    }
+
+
 }

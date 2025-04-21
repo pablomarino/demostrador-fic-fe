@@ -1,37 +1,35 @@
 <section class="py-12 px-8 lg:pb-32">
   <div class="container max-w-screen-xl mx-auto ">
-    <div class="p-12 w-full h-full bg-[rgba(50,110,118,.1)]"><!--</div> bg-slate-100">    -->
-
-      <p
-        class="text-[#132b2e] block antialiased tracking-normal font-sans text-3xl text-blue-gray-900 mb-3 font-bold leading-none  w-full">
-        {{this.languageService.getTranslation(proyecto.ref_cadena_titulo)}}
-      </p>
-
-      @if(proyecto.participaciones!.length>0){
-      <div class="flex items-center w-full">
-        <h6 class="text-base font-extralight text-blue-gray-900 leading-6">
-          {{this.languageService.getTranslation(proyecto.participaciones[0].ref_cadena_resultado)}}
-          {{this.languageService.getTranslation(proyecto.eventos[0].ref_cadena_titulo)}}
-        </h6>
-      </div>
-      }
-
-      <div class="flex flex-col w-full mt-4">
-        <div class="flex items-center gap-2">
-          <img src="{{proyecto.imagen_autor}}" class="w-10 h-10 rounded-full object-cover cursor-pointer mr-2">
-          <div class="flex flex-col">
-            <h6 class="text-base font-normal text-blue-gray-900">
-              {{ proyecto.nombre }} {{ proyecto.apellido1 }} {{ proyecto.apellido2 }}
-            </h6>
-            <h6 class="text-s text-[rgba(50,110,118,1)]">
-              {{this.languageService.getTranslation(this.proyecto.ref_cadena_titulacion)}}</h6>
-
+    <!-- 1 Cabecera -->
+    <div class="p-12 w-full h-full bg-[rgba(50,110,118,.1)]">
+      <div class="bg-slate-100 p-4">
+        <!-- Titulo del proyecto -->
+        <h1>{{this.languageService.getTranslation(proyecto.ref_cadena_titulo)}}</h1>
+        <!-- Participaciones-->
+        @if(proyecto.participaciones!.length>0){
+        <div class="flex items-center w-full">
+          <h6 class="text-xl text-[rgba(50,110,118,1)]">
+            {{this.languageService.getTranslation(proyecto.participaciones[0].ref_cadena_resultado)}}
+            {{this.languageService.getTranslation(proyecto.eventos[0].ref_cadena_titulo)}}
+          </h6>
+        </div>
+        }
+        <!-- Pastilla: Autor, titulación, Imagen-->
+        <div class="flex flex-col w-full mt-4">
+          <div class="flex items-center gap-2">
+            <img src="{{proyecto.imagen_autor}}" class="w-10 h-10 rounded-full object-cover cursor-pointer mr-2">
+            <div class="flex flex-col">
+              <h6 class="text-base font-normal text-blue-gray-900">
+                {{ proyecto.nombre }} {{ proyecto.apellido1 }} {{ proyecto.apellido2 }}
+              </h6>
+              <h6 class="text-sm text-[rgba(50,110,118,1)]"
+                [innerHTML]="this.languageService.getTranslation(this.proyecto.ref_cadena_titulacion)"></h6>
+            </div>
           </div>
         </div>
       </div>
 
-
-      <!-- Reproductor de Video a Full Ancho -->
+      <!-- 2 Reproductor de Video a Full Ancho -->
       @if(proyecto.video){
       <div class="w-full pt-8 mb-8">
         <video class="w-full rounded-lg shadow-lg" controls>
@@ -41,53 +39,141 @@
       </div>
       }
 
-      <!-- Contenido en dos columnas -->
-      <div class="pt-8 w-full h-full lg:grid lg:grid-cols-8 lg:gap-10 ">
-        <!-- Info proyecto -->
-        <div class="h-full flex flex-col lg:col-span-5 ">
-          <div id="info" class="flex-grow overflow-auto">
-            <div class="mb-10 lg:mb-0 overflow-clip">
+      <!-- 3 Contenido en dos columnas -->
+      <div class="pt-8 w-full h-full lg:grid lg:grid-cols-8 lg:gap-10 pb-8 ">
+        <!-- Resumen proyecto -->
 
+        <div class="h-full flex flex-col lg:col-span-5">
+          <div id="info" class="flex-grow overflow-auto">
+            <div class="mb-2 lg:mb-0 overflow-clip">
               <div class="flex items-center w-full max-h-fit">
-                <h6 class="text-base font-extralight text-blue-gray-900 leading-6">
-                  {{this.languageService.getTranslation(proyecto.ref_cadena_resumen)}}
+                <h6 class="text-base font-extralight text-blue-gray-900 leading-6"
+                  [innerHTML]="this.languageService.getTranslation(proyecto.ref_cadena_resumen)">
                 </h6>
               </div>
             </div>
           </div>
         </div>
         <!-- Imagen proyecto -->
-        <div class="lg:col-span-3 h-[21rem] rounded-lg w-full flex flex-col items-end text-right space-y-2 ">
-          @if(proyecto.imagenes[0].url){
-          <img loading="lazy" width="768" height="768" decoding="async"
-            class="h-full rounded-lg w-full object-cover cursor-pointer" src="{{proyecto.imagenes[0].url}}"
-            (click)="abrirModal(proyecto.imagenes[0].url)">
-          }
-          <div class="pt-4  flex flex-col items-end text-right space-y-2">
-            @if(proyecto.web){
-            <a href="{{proyecto.web}}" target="_blank"
-              class="flex items-center gap-2 text-[rgba(50,110,118,1)] hover:underline">
-              {{this.languageService.getTranslation(9)}}
-              <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                  d="M5.63605 5.63605C7.19815 4.07395 9.73081 4.07395 11.2929 5.63605L14.1213 8.46448C15.6834 10.0266 15.6834 12.5592 14.1213 14.1213C13.7308 14.5119 13.0976 14.5119 12.7071 14.1213C12.3166 13.7308 12.3166 13.0976 12.7071 12.7071C13.4882 11.9261 13.4882 10.6597 12.7071 9.87869L9.87869 7.05026C9.09764 6.26922 7.83131 6.26922 7.05026 7.05026C6.26922 7.83131 6.26922 9.09764 7.05026 9.87869L7.75737 10.5858C8.1479 10.9763 8.14789 11.6095 7.75737 12C7.36685 12.3905 6.73368 12.3905 6.34316 12L5.63605 11.2929C4.07395 9.73081 4.07395 7.19815 5.63605 5.63605ZM11.2929 9.8787C11.6834 10.2692 11.6834 10.9024 11.2929 11.2929C10.5119 12.074 10.5119 13.3403 11.2929 14.1213L14.1213 16.9498C14.9024 17.7308 16.1687 17.7308 16.9498 16.9498C17.7308 16.1687 17.7308 14.9024 16.9498 14.1213L16.2427 13.4142C15.8521 13.0237 15.8521 12.3905 16.2427 12C16.6332 11.6095 17.2663 11.6095 17.6569 12L18.364 12.7071C19.9261 14.2692 19.9261 16.8019 18.364 18.364C16.8019 19.9261 14.2692 19.9261 12.7071 18.364L9.8787 15.5356C8.3166 13.9735 8.3166 11.4408 9.8787 9.8787C10.2692 9.48817 10.9024 9.48817 11.2929 9.8787Z"
-                  fill="#326e76" />
-              </svg>
-            </a>
-            }
-            @if(proyecto.ruc){
-            <a href="{{proyecto.ruc}}" target="_blank"
-              class="flex items-center gap-2 text-[rgba(50,110,118,1)] hover:underline ">
-              {{this.languageService.getTranslation(11)}}
-              <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M9 17H15M9 13H15M9 9H10M13 3H8.2C7.0799 3 6.51984 3 6.09202 3.21799C5.71569 3.40973 5.40973 3.71569 5.21799 4.09202C5 4.51984 5 5.0799 5 6.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.0799 21 8.2 21H15.8C16.9201 21 17.4802 21 17.908 20.782C18.2843 20.5903 18.5903 20.2843 18.782 19.908C19 19.4802 19 18.9201 19 17.8V9M13 3L19 9M13 3V7.4C13 7.96005 13 8.24008 13.109 8.45399C13.2049 8.64215 13.3578 8.79513 13.546 8.89101C13.7599 9 14.0399 9 14.6 9H19"
-                  stroke="#326e76" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </a>
-            }
-          </div>
+        <div class="lg:col-span-3 ">
+          <div class=" rounded-lg w-full flex flex-col items-end text-right space-y-2 ">
 
+
+
+
+
+            <!--  Carrusel de imagenes                                        -->
+
+
+
+
+
+
+            <div class="relative w-full max-w-xl mx-auto">
+              @if (proyecto.imagenes.length>0) {
+              <div class="relative">
+                <img loading="lazy" width="768" height="768" decoding="async"
+                  class="h-full rounded-lg w-full object-cover cursor-pointer transition duration-300 ease-in-out"
+                  [src]="proyecto.imagenes[imagenActual].url" (click)="abrirModal(proyecto.imagenes[imagenActual].url)">
+                @if (proyecto.imagenes.length>1) {
+                <!-- Flecha Izquierda -->
+                <button
+                  class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow"
+                  (click)="anterior()" [disabled]="imagenActual === 0"[ngClass]="{
+                    'hidden': imagenActual === 0,
+                    'visible': imagenActual !== 0
+                  }">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-6 h-6">
+                    <path
+                      d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+                  </svg>
+                </button>
+
+                <!-- Flecha Derecha -->
+                <button
+                  class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow"
+                  (click)="siguiente()" [disabled]="imagenActual === proyecto.imagenes.length - 1"
+                  [ngClass]="{
+                    'hidden': imagenActual === proyecto.imagenes.length - 1,
+                    'visible': imagenActual !== proyecto.imagenes.length - 1
+                  }">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-6 h-6">
+                    <path
+                      d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
+                  </svg>
+                </button>
+                }
+              </div>
+
+              <!-- Puntos indicadores -->
+              @if (proyecto.imagenes.length>1) {
+              <div class="flex justify-center mt-4 space-x-2">
+                @for (i of proyecto.imagenes; track $index) {
+                <div class="w-3 h-3 rounded-full cursor-pointer" [ngClass]="{
+                        'bg-gray-800': $index === imagenActual,
+                        'bg-gray-400': $index !== imagenActual
+                      }" (click)="irAImagen($index)"></div>
+                }
+
+              </div>
+              }
+              }
+            </div>
+
+
+
+
+
+
+
+
+
+
+            <!--                                               -->
+
+
+
+
+
+
+            <!-- @if(proyecto.imagenes[0].url){
+              @for(imagen of proyecto.imagenes; track $index){
+                <img loading="lazy" width="768" height="768" decoding="async"
+                class="h-full rounded-lg w-full object-cover cursor-pointer" src="{{imagen.url}}"
+                (click)="abrirModal(imagen.url)">
+              }
+
+              }
+-->
+
+
+
+
+            <div class="pt-4  flex flex-col items-end text-right space-y-2">
+              @if(proyecto.web){
+              <a href="{{proyecto.web}}" target="_blank"
+                class="flex items-center gap-2 text-[rgba(50,110,118,1)] hover:underline">
+                {{this.languageService.getTranslation(9)}}
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M5.63605 5.63605C7.19815 4.07395 9.73081 4.07395 11.2929 5.63605L14.1213 8.46448C15.6834 10.0266 15.6834 12.5592 14.1213 14.1213C13.7308 14.5119 13.0976 14.5119 12.7071 14.1213C12.3166 13.7308 12.3166 13.0976 12.7071 12.7071C13.4882 11.9261 13.4882 10.6597 12.7071 9.87869L9.87869 7.05026C9.09764 6.26922 7.83131 6.26922 7.05026 7.05026C6.26922 7.83131 6.26922 9.09764 7.05026 9.87869L7.75737 10.5858C8.1479 10.9763 8.14789 11.6095 7.75737 12C7.36685 12.3905 6.73368 12.3905 6.34316 12L5.63605 11.2929C4.07395 9.73081 4.07395 7.19815 5.63605 5.63605ZM11.2929 9.8787C11.6834 10.2692 11.6834 10.9024 11.2929 11.2929C10.5119 12.074 10.5119 13.3403 11.2929 14.1213L14.1213 16.9498C14.9024 17.7308 16.1687 17.7308 16.9498 16.9498C17.7308 16.1687 17.7308 14.9024 16.9498 14.1213L16.2427 13.4142C15.8521 13.0237 15.8521 12.3905 16.2427 12C16.6332 11.6095 17.2663 11.6095 17.6569 12L18.364 12.7071C19.9261 14.2692 19.9261 16.8019 18.364 18.364C16.8019 19.9261 14.2692 19.9261 12.7071 18.364L9.8787 15.5356C8.3166 13.9735 8.3166 11.4408 9.8787 9.8787C10.2692 9.48817 10.9024 9.48817 11.2929 9.8787Z"
+                    fill="#326e76" />
+                </svg>
+              </a>
+              }
+              @if(proyecto.ruc){
+              <a href="{{proyecto.ruc}}" target="_blank"
+                class="flex items-center gap-2 text-[rgba(50,110,118,1)] hover:underline ">
+                {{this.languageService.getTranslation(11)}}
+                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M9 17H15M9 13H15M9 9H10M13 3H8.2C7.0799 3 6.51984 3 6.09202 3.21799C5.71569 3.40973 5.40973 3.71569 5.21799 4.09202C5 4.51984 5 5.0799 5 6.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.0799 21 8.2 21H15.8C16.9201 21 17.4802 21 17.908 20.782C18.2843 20.5903 18.5903 20.2843 18.782 19.908C19 19.4802 19 18.9201 19 17.8V9M13 3L19 9M13 3V7.4C13 7.96005 13 8.24008 13.109 8.45399C13.2049 8.64215 13.3578 8.79513 13.546 8.89101C13.7599 9 14.0399 9 14.6 9H19"
+                    stroke="#326e76" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+              }
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,14 +1,11 @@
 import { APP_INITIALIZER, Component, OnInit } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive, Router } from '@angular/router';
-import { bakeEnv } from '@elemental-concept/env-bakery';
 import { RestService } from './services/rest.service';
 import { Proyecto } from './interfaces/proyecto';
 import { HeaderComponent } from "./component/header/header.component";
 import { FooterComponent } from "./component/footer/footer.component";
 import { LanguageService } from './services/language.service';
-//import { BannerComponent } from "./component/banner/banner.component";
-//import { LandingComponent } from "./component/pages/landing/landing.component";
-//import { ErrorComponent } from './component/pages/error/error.component';
+
 
 @Component({
   selector: 'app-root',
@@ -33,7 +30,6 @@ export class AppComponent {
     this.restService.getProyectos().subscribe(
       (response) => {
         this.data = response
-        //console.log(this.data)
       },
       (error) => {
         this.restService.showErrorPage(this.languageService.getLanguage())

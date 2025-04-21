@@ -1,1 +1,8 @@
-Site Built from scratch by Pablo Mariño Boga.
+/* TEAM */
+Project author & director: Carlos Fernández Lozano
+Site design and implementation (Frontend+Backend+DB): Pablo Mariño Boga
+Docker and composer setup: Francisco Abel Cedrón Santaeufemia
+Network infrastructure assistance: José Domínguez García
+Supervision: Paula María Castro Castro
+
+/* THANK YOU FOR VISITING */

@@ -9,7 +9,7 @@ const targetPath = './src/environments/environment.ts';
 const content = `
 export const environment = {
   production: true,
-  apiUrl: '${envConfig.API_URL}',
+  apiURL: '${envConfig.API_URL}',
   apiPort: '${envConfig.API_PORT}'
 };
 `;

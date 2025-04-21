@@ -1,35 +1,37 @@
-<section class=" px-8 sm:pt-8 lg:pt-12">
+<section class=" px-8">
   <div class="container max-w-screen-xl mx-auto">
     @for(proyectos of proyectosAgrupados; track $index){
-      <div class="flex items-center space-x-2 pt-24 pb-8 p-2 w-full justify-center sm:justify-start">
-        <svg class="w-8 h-8 text-gray-800 dark:text-[#326e76]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-          width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-          <path fill-rule="evenodd"
-            d="M5 5a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1 2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a2 2 0 0 1 2-2ZM3 19v-7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Zm6.01-6a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm-10 4a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"
-            clip-rule="evenodd" />
-        </svg>
-        <h2 class="font-sans font-medium text-3xl line-clamp-1 text-[rgba(50,110,118,1)]">
-          {{ proyectos.fecha }}
-        </h2>
-      </div>
-      
+    <div class="flex items-center space-x-2 pt-12 pb-8 w-full justify-center sm:justify-start">
+      <svg class="w-8 h-8 text-gray-800 dark:text-[#326e76] fill-[rgba(50,110,118,1)]" aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+        <path fill-rule="evenodd"
+          d="M5 5a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1 2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a2 2 0 0 1 2-2ZM3 19v-7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Zm6.01-6a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm-10 4a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"
+          clip-rule="evenodd" />
+      </svg>
+      <h2 class="font-sans font-medium text-3xl line-clamp-1 text-[rgba(50,110,118,1)]">
+        {{ proyectos.fecha }}
+      </h2>
+    </div>
 
-    <div class="p-12 w-full h-full bg-slate-100 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+    <div
+      class="p-4 sm:p-12 w-full h-full bg-slate-100 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
       @for (proyecto of proyectos.data; track $index) {
       <a routerLink="/{{this.languageService.getLanguage()}}/proyecto/{{proyecto.id_proyecto}}" target="_self"
         class="h-[24rem] rounded-lg w-full flex flex-col text-left space-y-2 bg-white shadow-lg p-4 transform transition duration-300 hover:scale-105 hover:shadow-2xl hover:ring-4 hover:ring-[#3D5D75]">
 
         <!-- info -->
-        <div class="h-[10rem]">
-          <p
-            class="block overflow-none h-auto font-sans text-xl text-[#132b2e] antialiased tracking-normal text-blue-gray-900 mb-3 font-bold leading-none lg:max-w-xl line-clamp-3 w-full overflow-hidden text-ellipsis ![display:-webkit-box] ![webkit-box-orient:vertical]">
+        <div class="h-min[10rem] bg-slate-100 p-4">
+          <span
+            class="block mb-1 h-auto font-sans text-xl text-[#132b2e] antialiased tracking-normal text-blue-gray-900 font-bold leading-tight lg:max-w-xl line-clamp-3 w-full overflow-hidden text-ellipsis ![display:-webkit-box] ![webkit-box-orient:vertical]">
             {{this.languageService.getTranslation(proyecto.ref_cadena_titulo)}}
-          </p>
+          </span>
           @if(proyecto.eventos[0].ref_cadena_titulo){
-          <p class="h-[1rem] block font-sans text-sm  w-full line-clamp-2 pb-4 text-[rgba(50,110,118,1)]">
+          <span
+            class="h-[1rem] block font-sans text-sm  w-full line-clamp-2 mb-4 leading-tight text-[rgba(50,110,118,1)]">
             {{this.languageService.getTranslation(proyecto.eventos[0].ref_cadena_titulo)}}
-          </p>
+          </span>
           }
         </div>
 

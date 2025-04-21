@@ -28,6 +28,7 @@ export class BannerComponent {
   private visible_projects:number = 7;
 
   ngOnInit(): void {
+    // muestro los proyectos del ultimo año y si no son suficientes añado aleatoriamente de años anteriores
     this.restService.getProyectos().subscribe({
       next: (data) => {
         // Ordeno por el año del primer evento
@@ -38,8 +39,19 @@ export class BannerComponent {
           // Ordenamos de mayor a menor (descendente)
           return yearB - yearA;
         });
-        // 
-        this.proyectos=this.shuffleArray(data.slice(0,this.visible_projects))
+        // Obtener el año más reciente del conjunto de datos
+        const mostRecentYear = new Date(data[0].eventos[0].fecha).getFullYear();
+        // Contar cuántos proyectos son de ese año
+        const countMostRecent = data.filter(proyecto => {
+          const year = new Date(proyecto.eventos[0].fecha).getFullYear();
+          return year === mostRecentYear;
+        }).length;
+        // obtengo los proyectos del utlimo año
+        this.proyectos=data.slice(0,countMostRecent);//this.visible_projects))
+        // obtengo proyectos de otros años
+        const proyectosOtrosAños=this.shuffleArray(data.slice(countMostRecent,data.length)).slice(0,this.visible_projects-countMostRecent);
+        // los concateno
+        this.proyectos = this.shuffleArray(this.proyectos.concat(proyectosOtrosAños));
       },
       error: (error) => {
         this.restService.showErrorPage(this.languageService.getLanguage())
