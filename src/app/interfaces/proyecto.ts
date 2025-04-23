@@ -1,4 +1,3 @@
-
 export interface Traduccion{
   id_traduccion: number;
   id_referencia: number;
@@ -42,11 +41,7 @@ export interface Proyecto {
     resumen:               Traduccion;
     titulacion:            Traduccion;
     titulo:                Traduccion;
-//    idioma:            string;
-//    resumen_es:        string;
-//    resumen_gl:        string;
-//    titulo_es:         string;
-//    titulo_gl:         string;
+    poster:            string;
     video:             string;
     web:               string;
     ruc:               string;
@@ -60,10 +55,4 @@ export interface Proyecto {
     imagenes:          Imagen[];
     participaciones:   Participacion[];
 }
-/*
-export enum Idiomas {
-    ES = 'es',
-    EN = 'en',
-    GL = 'gl'
-}
-*/
+

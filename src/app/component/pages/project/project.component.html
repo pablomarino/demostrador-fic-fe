@@ -32,7 +32,9 @@
       <!-- 2 Reproductor de Video a Full Ancho -->
       @if(proyecto.video){
       <div class="w-full pt-8 mb-8">
-        <video class="w-full rounded-lg shadow-lg" controls>
+        <video class="w-full rounded-lg shadow-lg"
+         poster="{{proyecto.poster}}"
+         controls>
           <source src="{{proyecto.video}}" type="video/webm">
           Tu navegador no soporta la reproducción de video.
         </video>

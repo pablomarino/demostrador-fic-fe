@@ -29,8 +29,8 @@ export class ProjectComponent implements OnInit{
     });
     this.restService.getProyecto(this.id!).subscribe({
       next: (data) => {
-        //console.log(data)
         this.proyecto = data;
+        this.proyecto.poster = this.proyecto.video.split(".")[0].concat(".jpg") // Arreglo creativo de última hora, es necesario ponerlo en BBDD
       },
       error: (error) => {
         this.restService.showErrorPage(this.languageService.getLanguage())
