@@ -70,6 +70,11 @@ export class WallComponent {
       }
     });
 
+         // Ordeno los proyectos dentro de cada grupo por apellido1
+         agrupados.forEach(grupo => {
+          grupo.data.sort((a, b) => a.apellido1.localeCompare(b.apellido1));
+        });
+
     // Asignar los proyectos agrupados a la variable `proyectosAgrupados`
     this.proyectosAgrupados = agrupados;
   }

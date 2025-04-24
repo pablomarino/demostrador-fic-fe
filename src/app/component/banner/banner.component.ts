@@ -48,10 +48,14 @@ export class BannerComponent {
         }).length;
         // obtengo los proyectos del utlimo año
         this.proyectos=data.slice(0,countMostRecent);//this.visible_projects))
+        // no voy a hacer shuffle del array final asi que desordeno los del último año
+        this.proyectos =this.shuffleArray(this.proyectos)
         // obtengo proyectos de otros años
         const proyectosOtrosAños=this.shuffleArray(data.slice(countMostRecent,data.length)).slice(0,this.visible_projects-countMostRecent);
         // los concateno
-        this.proyectos = this.shuffleArray(this.proyectos.concat(proyectosOtrosAños));
+        this.proyectos =this.proyectos.concat(proyectosOtrosAños);
+        // o bien los concateno desordenados
+        // this.proyectos = this.shuffleArray(this.proyectos.concat(proyectosOtrosAños));
       },
       error: (error) => {
         this.restService.showErrorPage(this.languageService.getLanguage())
