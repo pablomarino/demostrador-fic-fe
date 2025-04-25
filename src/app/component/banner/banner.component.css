@@ -1,6 +1,5 @@
-@media not all and (min-resolution: 0.001dpcm) {
+/*@media not all and (min-resolution: 0.001dpcm) {
   @supports (-webkit-appearance: none) {
-    /* Solo Safari */
     .safari-fix-img {
       width: 100% !important;
       min-width: 0 !important;
@@ -8,3 +7,4 @@
     }
   }
 }
+*/
